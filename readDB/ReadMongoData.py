@@ -21,12 +21,11 @@ client = MongoClient(
 db = client["myFirstDatabase"]
 
 
-# def getBookingDetails():
-#     # collection
-#     bookingdetails_table = db["bookingdetails"].find({})
-#     bookingdetails = pd.DataFrame(bookingdetails_table)
-# #    bookingdetails.set_index("_id", inplace=True)
-#     return bookingdetails
+def getAgentCommissions():
+    agentcommissions_table = db["agentcommissions"].find({})
+    agentcommissions = pd.DataFrame(agentcommissions_table)
+    agentcommissions.set_index("_id", inplace=True)
+    return agentcommissions
 
 
 def getBookings():
@@ -39,11 +38,11 @@ def getBookings():
 # # print(bookings_with_details)
 
 
-# def getFees():
-#     fees_table = db["fees"].find({})
-#     fees = pd.DataFrame(fees_table)
-#     fees.set_index("_id", inplace=True)
-#     return fees
+def getAgencies():
+    agencies_table = db["agencies"].find({})
+    agencies = pd.DataFrame(agencies_table)
+    agencies.set_index("_id", inplace=True)
+    return agencies
 
 
 # def getRegions():
@@ -98,8 +97,8 @@ def getAgents():
 #     return customers
 
 
-# def getPackages():
-#     packages_table = db["packages"].find({})
-#     packages = pd.DataFrame(packages_table)
-#     packages.set_index("_id", inplace=True)
-#     return packages
+def getPackages():
+    packages_table = db["packages"].find({})
+    packages = pd.DataFrame(packages_table)
+    packages.set_index("_id", inplace=True)
+    return packages
