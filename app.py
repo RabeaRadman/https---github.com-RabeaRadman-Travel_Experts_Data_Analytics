@@ -15,6 +15,8 @@ bookings = db.getBookings()
 agents = db.getAgents()
 agentscom = db.getAgentCommissions()
 packages = db.getPackages()
+
+suppliers = db.getSuppliers()
 # agencies = db.getAgencies()
 # customers = db.getCustomers()
 # agents = db.getAgents()
@@ -27,6 +29,9 @@ bookings_agents_pckages = pd.merge(bookings_agents, packages, on="PackageId")
 
 bookings_agents_pckages.rename(columns={'title': 'Destination', 'totalPrice': 'Total Price'
 , 'AgentCommission': 'Agent Commission', 'PkgAgencyCommission':'Agency Commission'}, inplace=True)
+
+#copy supplier id from one dataframe to another
+# combiend_df = bookings_agents_pckages.join(suppliers)
 
 
 # agents_customers = pd.merge(customers, agents, on="AgentId")
@@ -158,10 +163,13 @@ fig5.update_layout(
 
 
 
-app = dash.Dash(__name__)
+dash_app = dash.Dash(__name__)
+
+# app = dash.Dash("app")
+app = dash_app.server
 
 # #---------------------------------------------------------------
-app.layout = html.Div([
+dash_app.layout = html.Div([
     html.Div([
         html.H1(['Travel Experts Data Analytics']),
         dcc.Dropdown(
@@ -208,7 +216,7 @@ app.layout = html.Div([
 ])
 
 # #---------------------------------------------------------------
-@app.callback(
+@dash_app.callback(
     Output(component_id='the_graph', component_property='figure'),
     [Input(component_id='my_dropdown', component_property='value')]
 )
@@ -226,4 +234,4 @@ def update_graph(my_dropdown):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8600)
+    dash_app.run_server(debug=True)

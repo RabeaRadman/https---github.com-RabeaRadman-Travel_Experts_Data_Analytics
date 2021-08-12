@@ -66,11 +66,11 @@ def getAgencies():
 #     return products_suppliers
 
 
-# def getSuppliers():
-#     suppliers_table = db["suppliers"].find({})
-#     suppliers = pd.DataFrame(suppliers_table)
-#     suppliers.set_index("_id", inplace=True)
-#     return suppliers
+def getSuppliers():
+    suppliers_table = db["suppliers"].find({})
+    suppliers = pd.DataFrame(suppliers_table)
+    suppliers.set_index("_id", inplace=True)
+    return suppliers
 
 
 # def getProducts():
